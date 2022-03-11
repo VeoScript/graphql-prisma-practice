@@ -6,6 +6,7 @@ import CreateForm from '../components/CreateForm'
 import { request } from 'graphql-request'
 import { GET_STUDENTS_QUERY } from '../graphql/modules/queries'
 import useSWR from 'swr'
+import LoadingPage from '../layouts/loading'
 
 const Home: NextPage = () => {
 
@@ -13,7 +14,7 @@ const Home: NextPage = () => {
     refreshInterval: 1000
   })
 
-  if (!data) return <p>Loading...</p>
+  if (!data) return <LoadingPage />
 
   if (error) return <p>Oh no... {error.message}</p>
 
