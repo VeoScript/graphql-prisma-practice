@@ -4,7 +4,7 @@ import { relayStylePagination } from '@apollo/client/utilities'
 let dynamic_uri
 
 if (process.env.NODE_ENV === 'production') {
-  dynamic_uri = 'https://your_domain.com/api/graphql'
+  dynamic_uri = 'https://graphql-prisma-practice.vercel.app/api/graphql'
 } else {
   dynamic_uri = 'http://localhost:3000/api/graphql'
 }
