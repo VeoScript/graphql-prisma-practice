@@ -9,7 +9,7 @@ import useSWR from 'swr'
 
 const Home: NextPage = () => {
 
-  const { data, error } = useSWR(GET_STUDENTS_QUERY, (query) => request('/api/graphql', query), {
+  const { data, error } = useSWR(GET_STUDENTS_QUERY, (query) =>request('/api/graphql', query), {
     refreshInterval: 1000
   })
 
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
         <div className="flex justify-between w-full max-w-3xl">
           <div className="flex flex-col space-y-1">
             <h1 className="font-bold text-xl">Integration of GraphQL using Prisma and NextJS</h1>
-            <h3 className="font-light text-lg">Simple Student Registration Form</h3>
+            <h3 className="font-light text-lg">Simple Student Registration Form - Basic (CRUD)</h3>
           </div>
           <div className="flex-">
             <CreateForm />

@@ -2,7 +2,11 @@
 
 export const resolvers = {
   Query: {
-    students: async (_parent: any, _args: any, ctx: any) => await ctx.prisma.student.findMany()
+    students: async (_parent: any, _args: any, ctx: any) => await ctx.prisma.student.findMany({
+      orderBy: [{
+        id: 'desc'
+      }]
+    })
   },
   Mutation: {
     addStudent: async (_parent: any, { name, age, gender, course }: any, ctx: any) => await ctx.prisma.student.create({

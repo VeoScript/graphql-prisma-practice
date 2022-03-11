@@ -1,5 +1,6 @@
 import React from 'react'
-import { RiEditBoxLine, RiDeleteBinLine } from 'react-icons/ri'
+import EditForm from './EditForm'
+import DeleteForm from './DeleteForm'
 
 interface IProps {
   students: any
@@ -26,12 +27,8 @@ const Table: React.FC<IProps> = ({ students }) => {
             <td className="border border-slate-300 p-3">{ student.course }</td>
             <td className="border border-slate-300 p-3">
               <div className="flex items-center justify-center w-full space-x-1">
-                <button title="Edit" className="p-2 rounded-full text-white bg-orange-500">
-                  <RiEditBoxLine />
-                </button>
-                <button title="Delete" className="p-2 rounded-full text-white bg-red-600">
-                  <RiDeleteBinLine />
-                </button>
+                <EditForm student={student} />
+                <DeleteForm student={student} />
               </div>
             </td>
           </tr>
