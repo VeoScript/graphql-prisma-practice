@@ -3,7 +3,7 @@ import { relayStylePagination } from '@apollo/client/utilities'
 
 let dynamic_uri
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'development') {
   dynamic_uri = 'http://localhost:3000/api/graphql'
 } else {
   dynamic_uri = process.env.PRODUCTION_URI
