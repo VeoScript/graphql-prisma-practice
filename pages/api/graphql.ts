@@ -20,7 +20,7 @@ export default async function handler(req: any, res: any) {
   res.setHeader('Access-Control-Allow-Credentials', true)
   res.setHeader('Access-Control-Allow-Headers','Content-Type, Authorization, Content-Length, X-Requested-With')
   res.setHeader('Access-Control-Allow-Methods','POST, GET, DELETE')
-  res.setHeader('Access-Control-Allow-Origin', 'https://studio.apollographql.com')
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
   
   if (req.method === 'OPTIONS') {
     res.end()
