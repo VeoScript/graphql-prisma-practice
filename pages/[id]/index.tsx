@@ -81,7 +81,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         id: student.id
       }
     })),
-    fallback: false
+    fallback: true
   }
 }
 
