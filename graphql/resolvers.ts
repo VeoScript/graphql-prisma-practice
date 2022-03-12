@@ -7,35 +7,35 @@ export const resolvers = {
         id: 'desc'
       }]
     }),
-    getStudent: async (_parent: any, { id }: any, ctx: any) => await ctx.prisma.student.findUnique({
+    getStudent: async (_parent: any, _args: any, ctx: any) => await ctx.prisma.student.findUnique({
       where: {
-        id: id
+        id: _args.id
       }
     })
   },
   Mutation: {
-    addStudent: async (_parent: any, { name, age, gender, course }: any, ctx: any) => await ctx.prisma.student.create({
+    addStudent: async (_parent: any, _args: any, ctx: any) => await ctx.prisma.student.create({
       data: {
-        name,
-        age,
-        gender,
-        course
+        name: _args.name,
+        age: _args.age,
+        gender: _args.gender,
+        course: _args.course
       }
     }),
-    updateStudent: async (_parent: any, { id, name, age, gender, course }: any, ctx: any) => await ctx.prisma.student.update({
+    updateStudent: async (_parent: any, _args: any, ctx: any) => await ctx.prisma.student.update({
       where: {
-        id: id
+        id: _args.id
       },
       data: {
-        name,
-        age,
-        gender,
-        course
+        name: _args.name,
+        age: _args.age,
+        gender: _args.gender,
+        course: _args.course
       }
     }),
-    deleteStudent: async (_parent: any, { id }: any, ctx: any) => await ctx.prisma.student.delete({
+    deleteStudent: async (_parent: any, _args: any, ctx: any) => await ctx.prisma.student.delete({
       where: {
-        id: id
+        id: _args.id
       }
     })
   }
