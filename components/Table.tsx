@@ -1,6 +1,8 @@
 import React from 'react'
+import Link from 'next/link'
 import EditForm from './EditForm'
 import DeleteForm from './DeleteForm'
+import { RiArrowGoForwardLine } from 'react-icons/ri'
 
 interface IProps {
   students: any
@@ -27,6 +29,14 @@ const Table: React.FC<IProps> = ({ students }) => {
             <td className="border border-slate-300 p-3">{ student.course }</td>
             <td className="border border-slate-300 p-3">
               <div className="flex items-center justify-center w-full space-x-1">
+                <Link href={`/${ student.id }`}>
+                  <a
+                    title="View"
+                    className="outline-none p-2 rounded-full text-white bg-orange-600 transition ease-in-out duration-200 hover:bg-opacity-60"
+                  >
+                    <RiArrowGoForwardLine />
+                  </a>
+                </Link>
                 <EditForm student={student} />
                 <DeleteForm student={student} />
               </div>
