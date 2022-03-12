@@ -1,6 +1,8 @@
 import { NextPage, GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next'
 import React from 'react'
 import Head from 'next/head'
+import Router from 'next/router'
+import DefaultErrorPage from 'next/error'
 import { useQuery } from '@apollo/client'
 import { request } from 'graphql-request'
 import { GET_UNIQUE_STUDENT_QUERY } from '../../graphql/modules/queries'
@@ -25,8 +27,17 @@ const StudentProfile: NextPage<IProps> = ({ params }) => {
     fallbackData: getStudent
   })
 
-  if (!data) return <LoadingPage />
+  if (!getId || !getStudent) {
+    return <>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <DefaultErrorPage statusCode={404} />
+    </>
+  }
 
+  if (!data) return <LoadingPage />
+  
   if (error) return <p>Oh no... {error.message}</p>
 
   const student = data.getStudent
@@ -61,6 +72,14 @@ const StudentProfile: NextPage<IProps> = ({ params }) => {
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
   const { params } = ctx
+  if (!params?.id) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
   return {
     props: {
       params
@@ -81,7 +100,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         id: student.id
       }
     })),
-    fallback: true
+    fallback: 'blocking'
   }
 }
 
