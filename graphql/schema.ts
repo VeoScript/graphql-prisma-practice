@@ -13,6 +13,7 @@
     # Your Queries Here...
     type Query {
       students: [Student]!
+      getStudent(id: String!): Student!
     }
 
     # Your Mutations Here...

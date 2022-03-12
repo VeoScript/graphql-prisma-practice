@@ -10,7 +10,7 @@ import LoadingPage from '../layouts/loading'
 
 const Home: NextPage = () => {
 
-  const { data, error } = useSWR(GET_STUDENTS_QUERY, (query) =>request('/api/graphql', query), {
+  const { data, error } = useSWR(GET_STUDENTS_QUERY, (query) => request('/api/graphql', query), {
     refreshInterval: 1000
   })
 

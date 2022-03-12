@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Student {
-  id      String    @id     @default(cuid())
+  id      String    @id   @unique   @default(cuid())
   name    String
   age     String
   gender  String
