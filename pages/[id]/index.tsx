@@ -5,10 +5,11 @@ import Router from 'next/router'
 import DefaultErrorPage from 'next/error'
 import { useQuery } from '@apollo/client'
 import { request } from 'graphql-request'
-import { GET_UNIQUE_STUDENT_QUERY } from '../../graphql/modules/queries'
+import { GET_STUDENTS_QUERY, GET_UNIQUE_STUDENT_QUERY } from '../../graphql/modules/queries'
 import useSWR from 'swr'
 import prisma from '../../lib/Prisma'
 import LoadingPage from '../../layouts/loading'
+// import { client } from '../../lib/Apollo'
 
 interface IProps {
   params: any
@@ -22,12 +23,13 @@ const StudentProfile: NextPage<IProps> = ({ params }) => {
     variables: { getId }
   })
 
-  const { data, error } = useSWR([GET_UNIQUE_STUDENT_QUERY, getId], (query, getId) => request('/api/graphql', query, { getId }), {
+  const { data, isValidating, error } = useSWR([GET_UNIQUE_STUDENT_QUERY, getId], (query, getId) => request('/api/graphql', query, { getId }), {
     refreshInterval: 1000,
     fallbackData: getStudent
   })
-
-  if (!getId || !getStudent) {
+  
+  if (getId !== data?.getStudent.id) {
+    if (isValidating) return <LoadingPage />
     return <>
       <Head>
         <meta name="robots" content="noindex" />
@@ -35,8 +37,6 @@ const StudentProfile: NextPage<IProps> = ({ params }) => {
       <DefaultErrorPage statusCode={404} />
     </>
   }
-
-  if (!data) return <LoadingPage />
   
   if (error) return <p>Oh no... {error.message}</p>
 
@@ -72,14 +72,10 @@ const StudentProfile: NextPage<IProps> = ({ params }) => {
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
   const { params } = ctx
-  if (!params?.id) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  }
+
+  // const data = await request('/api/graphql', GET_STUDENTS_QUERY)
+
+  // console.log(data)
   return {
     props: {
       params
