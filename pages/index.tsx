@@ -24,16 +24,18 @@ const Home: NextPage = () => {
         <title>GraphQL + Prisma</title>
       </Head>
       <div className="flex flex-col items-center justify-start w-full h-screen space-y-10 py-10 bg-white">
-        <div className="flex justify-between w-full max-w-3xl">
-          <div className="flex flex-col space-y-1">
+        <div className="flex items-center justify-between w-full max-w-3xl">
+          <div className="flex flex-col w-full space-y-1">
             <h1 className="font-bold text-xl">Integration of GraphQL using Prisma and NextJS</h1>
             <h3 className="font-light text-lg">Simple Student Registration Form - Basic (CRUD)</h3>
           </div>
-          <div className="flex-">
+          <div className="flex justify-end w-full max-w-[10rem]">
             <CreateForm />
           </div>
         </div>
-        <Table students={data.students} />
+        <div className="flex justify-center w-full pb-16">
+          <Table students={data.students} />
+        </div>
       </div>
     </React.Fragment>
   )
