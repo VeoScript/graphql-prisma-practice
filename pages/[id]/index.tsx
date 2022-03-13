@@ -9,7 +9,6 @@ import { GET_STUDENTS_QUERY, GET_UNIQUE_STUDENT_QUERY } from '../../graphql/modu
 import useSWR from 'swr'
 import prisma from '../../lib/Prisma'
 import LoadingPage from '../../layouts/loading'
-// import { client } from '../../lib/Apollo'
 
 interface IProps {
   params: any
@@ -23,7 +22,8 @@ const StudentProfile: NextPage<IProps> = ({ params }) => {
     variables: { getId }
   })
 
-  const { data, isValidating, error } = useSWR([GET_UNIQUE_STUDENT_QUERY, getId], (query, getId) => request('/api/graphql', query, { getId }), {
+  const { data, isValidating, error } = useSWR([GET_UNIQUE_STUDENT_QUERY, getId], (query, getId) => 
+    request('/api/graphql', query, { getId }), {
     refreshInterval: 1000,
     fallbackData: getStudent
   })
@@ -72,10 +72,6 @@ const StudentProfile: NextPage<IProps> = ({ params }) => {
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
   const { params } = ctx
-
-  // const data = await request('/api/graphql', GET_STUDENTS_QUERY)
-
-  // console.log(data)
   return {
     props: {
       params

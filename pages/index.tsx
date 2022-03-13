@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Table from '../components/Table'
 import CreateForm from '../components/CreateForm'
+import { Toaster } from 'react-hot-toast'
 import { request } from 'graphql-request'
 import { GET_STUDENTS_QUERY } from '../graphql/modules/queries'
 import useSWR from 'swr'
@@ -23,6 +24,10 @@ const Home: NextPage = () => {
       <Head>
         <title>GraphQL + Prisma</title>
       </Head>
+      <Toaster
+        position="top-right"
+        reverseOrder={true}
+      />
       <div className="flex flex-col items-center justify-start w-full h-screen space-y-10 py-10 bg-white">
         <div className="flex items-center justify-between w-full max-w-3xl">
           <div className="flex flex-col w-full space-y-1">
